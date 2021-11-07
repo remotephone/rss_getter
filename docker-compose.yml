@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   tiingobeat:
-    image: ghcr.io/remotephone/coder-swarm:latest
+    image: ghcr.io/remotephone/django-cast:latest
     environment:
     deploy:
       labels:
@@ -19,7 +19,6 @@ services:
       replicas: 1
     networks:
       - traefik-public
-
 
 networks:
   traefik-public:my.domain
