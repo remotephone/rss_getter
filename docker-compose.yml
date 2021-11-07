@@ -3,23 +3,22 @@ version: '3.8'
 services:
   django-cast:
     image: ghcr.io/remotephone/django-cast:latest
-    environment:
     deploy:
       labels:
         - traefik.enable=true
         - traefik.constraint-label=traefik-public
-        - traefik.http.routers.coder-http.rule=Host(`coder.my.domain`)
+        - traefik.http.routers.coder-http.rule=Host(`casts.my.domain`)
         - traefik.http.routers.coder-http.entrypoints=http
         - traefik.http.routers.coder-http.middlewares=https-redirect
-        - traefik.http.routers.coder-https.rule=Host(`coder.my.domain`)
+        - traefik.http.routers.coder-https.rule=Host(`casts.my.domain`)
         - traefik.http.routers.coder-https.entrypoints=https
         - traefik.http.routers.coder-https.tls=true
         - traefik.http.routers.coder-https.tls.certresolver=le
-        - traefik.http.services.coder.loadbalancer.server.port=80
+        - traefik.http.services.coder.loadbalancer.server.port=8000
       replicas: 1
     networks:
       - traefik-public
 
 networks:
-  traefik-public:my.domain
+  traefik-public:
     external: true
