@@ -6,10 +6,10 @@ Following the example here - https://realpython.com/build-a-content-aggregator-p
 
 WSL2 does not natively expose the ports you want to. I need to 
 
-- add the following IP to `settings.py`
+- add your IP to `settings.py`, you can get it from the logs
 
 ```python
-ALLOWED_HOSTS = ["172.29.0.176", "0.0.0.0"]
+ALLOWED_HOSTS = ["172.14.0.100"]
 ```
 Or simply set it to wildcard
 ```
@@ -35,3 +35,17 @@ ALLOWED_HOSTS = ["*"]
             fetch_realpython_episodes()
             fetch_ALAB_episodes()
     ```
+- Then add it to the scheduler
+    ```
+        scheduler.add_job(
+            fetch_ALAB_episodes,
+            trigger="interval",
+            minutes=240,
+            id="ALAB",
+            max_instances=1,
+            replace_existing=True,
+        )
+        logger.info("Added job: ALAB Feed.")
+    ```
+
+#
