@@ -7,14 +7,14 @@ services:
       labels:
         - traefik.enable=true
         - traefik.constraint-label=traefik-public
-        - traefik.http.routers.coder-http.rule=Host(`casts.my.domain`)
-        - traefik.http.routers.coder-http.entrypoints=http
-        - traefik.http.routers.coder-http.middlewares=https-redirect
-        - traefik.http.routers.coder-https.rule=Host(`casts.my.domain`)
-        - traefik.http.routers.coder-https.entrypoints=https
-        - traefik.http.routers.coder-https.tls=true
-        - traefik.http.routers.coder-https.tls.certresolver=le
-        - traefik.http.services.coder.loadbalancer.server.port=8000
+        - traefik.http.routers.casts-http.rule=Host(`casts.my.domain`)
+        - traefik.http.routers.casts-http.entrypoints=http
+        - traefik.http.routers.casts-http.middlewares=https-redirect
+        - traefik.http.routers.casts-https.rule=Host(`casts.my.domain`)
+        - traefik.http.routers.casts-https.entrypoints=https
+        - traefik.http.routers.casts-https.tls=true
+        - traefik.http.routers.casts-https.tls.certresolver=le
+        - traefik.http.services.casts.loadbalancer.server.port=8000
       replicas: 1
     networks:
       - traefik-public
