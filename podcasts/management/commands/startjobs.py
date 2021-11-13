@@ -2,6 +2,7 @@
 import logging
 
 # Django
+from django import db
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
@@ -43,6 +44,7 @@ def save_new_episodes(feed):
                 guid=item.guid,
             )
             episode.save()
+        db.connections.close_all()
 
 def fetch_realpython_episodes():
     """Fetches new episodes from RSS for The Real Python Podcast."""
