@@ -1,6 +1,8 @@
 #!/bin/bash
 
+#!/usr/bin/env bash
+# start-server.sh
+python manage.py migrate --noinput
+(cd /usr/src/app; gunicorn content_aggregator.wsgi --user www-data --bind 0.0.0.0:8000 --workers 3) &
+nginx -g "daemon off;"
 
-python manage.py migrate --noinput || exit 1
-nohup python manage.py startjobs  || exit 1
-python manage.py runserver 0.0.0.0:8000
