@@ -102,6 +102,9 @@ class Command(BaseCommand):
         logger.info("Added weekly job: Delete Old Job Executions.")
 
         try:
+            logger.info("Running jobs once...")
+            fetch_realpython_episodes()
+            fetch_ALAB_episodes()
             logger.info("Starting scheduler...")
             scheduler.start()
         except KeyboardInterrupt:
